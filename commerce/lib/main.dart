@@ -3,12 +3,12 @@ import 'package:commerce/ui/screens/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-  String title = 'E-Commerce';
+  const MyApp({super.key});
+  final String title = 'E-Commerce';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

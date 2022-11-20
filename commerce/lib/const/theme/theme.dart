@@ -10,7 +10,9 @@ class ProjectTheme {
   );
   ThemeData lightTheme = ThemeData(
     appBarTheme: AppBarTheme(
-        iconTheme: const IconThemeData(color: Colors.grey),
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Colors.grey, size: 16),
         color: Colors.white,
         toolbarTextStyle: const TextTheme(headline2: TextStyle(color: Colors.grey, fontSize: 20)).bodyText2,
         titleTextStyle: const TextTheme(headline2: TextStyle(color: Colors.grey, fontSize: 20)).headline6),
