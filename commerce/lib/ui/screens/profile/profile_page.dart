@@ -66,7 +66,13 @@ class _ProfilePageState extends State<ProfilePage> {
           onPressed: () {},
           icon: const Icon(Icons.chevron_left_outlined),
         ),
-        title: const Text(ProjectProfileStrings.profile));
+        title: Text(
+          ProjectProfileStrings.profile,
+          style: Theme.of(context)
+              .textTheme
+              .headline6
+              ?.copyWith(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
+        ));
   }
 }
 
