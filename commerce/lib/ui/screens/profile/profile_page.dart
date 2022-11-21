@@ -37,21 +37,16 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             _sizedBox30(),
-            _ProfileCard(
-                image: Image.asset(IconPaths.icUserProf), onPress: () {}, title: ProjectProfileStrings.account),
+            _ProfileCard(imagePath: IconPaths.icProfile, onPress: () {}, title: ProjectProfileStrings.account),
             _sizedBox15(),
             _ProfileCard(
-                image: SvgPicture.asset(IconPaths.icNotification),
-                onPress: () {},
-                title: ProjectProfileStrings.notification),
+                imagePath: IconPaths.icNotification, onPress: () {}, title: ProjectProfileStrings.notification),
             _sizedBox15(),
-            _ProfileCard(
-                image: SvgPicture.asset(IconPaths.icSettings), onPress: () {}, title: ProjectProfileStrings.settings),
+            _ProfileCard(imagePath: IconPaths.icSettings, onPress: () {}, title: ProjectProfileStrings.settings),
             _sizedBox15(),
-            _ProfileCard(image: SvgPicture.asset(IconPaths.icHelp), onPress: () {}, title: ProjectProfileStrings.help),
+            _ProfileCard(imagePath: IconPaths.icHelp, onPress: () {}, title: ProjectProfileStrings.help),
             _sizedBox15(),
-            _ProfileCard(
-                image: SvgPicture.asset(IconPaths.icLogout), onPress: () {}, title: ProjectProfileStrings.logout),
+            _ProfileCard(imagePath: IconPaths.icLogout, onPress: () {}, title: ProjectProfileStrings.logout),
           ],
         ),
       ),
@@ -103,9 +98,9 @@ class _ProfileCard extends StatelessWidget {
     Key? key,
     required this.title,
     required this.onPress,
-    required this.image,
+    required this.imagePath,
   }) : super(key: key);
-  final Widget image;
+  final String imagePath;
   final String title;
   final Function() onPress;
 
@@ -119,7 +114,7 @@ class _ProfileCard extends StatelessWidget {
         child: ListTile(
           onTap: onPress,
           title: Text(title),
-          leading: image,
+          leading: SvgPicture.asset(imagePath, color: Colors.red),
           trailing: const Icon(
             Icons.arrow_forward_ios_outlined,
           ),
