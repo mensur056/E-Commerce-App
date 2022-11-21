@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: ProjectPaddingSymmetric.paddingHor20,
         child: ListView(
           children: [
-            _sizedBox30(),
+            _sizedBox36(),
             CircleAvatar(
               radius: 60,
               backgroundColor: Colors.transparent,
@@ -36,16 +36,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-            _sizedBox30(),
+            _sizedBox36(),
             _ProfileCard(imagePath: IconPaths.icProfile, onPress: () {}, title: ProjectProfileStrings.account),
-            _sizedBox15(),
+            _sizedBox16(),
             _ProfileCard(
                 imagePath: IconPaths.icNotification, onPress: () {}, title: ProjectProfileStrings.notification),
-            _sizedBox15(),
+            _sizedBox16(),
             _ProfileCard(imagePath: IconPaths.icSettings, onPress: () {}, title: ProjectProfileStrings.settings),
-            _sizedBox15(),
+            _sizedBox16(),
             _ProfileCard(imagePath: IconPaths.icHelp, onPress: () {}, title: ProjectProfileStrings.help),
-            _sizedBox15(),
+            _sizedBox16(),
             _ProfileCard(imagePath: IconPaths.icLogout, onPress: () {}, title: ProjectProfileStrings.logout),
           ],
         ),
@@ -53,15 +53,15 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  SizedBox _sizedBox30() {
+  SizedBox _sizedBox36() {
     return const SizedBox(
-      height: 30,
+      height: 36,
     );
   }
 
-  SizedBox _sizedBox15() {
+  SizedBox _sizedBox16() {
     return const SizedBox(
-      height: 15,
+      height: 16,
     );
   }
 
@@ -84,10 +84,57 @@ class CustomBottomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      elevation: 0,
-      child: Row(
-        children: const [Icon(Icons.add)],
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topRight: Radius.circular(40),
+        topLeft: Radius.circular(40),
+      ),
+      child: BottomAppBar(
+        elevation: 0,
+        child: Padding(
+          padding: ProjectPaddingSymmetric.paddingVer24,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _CustomSvgImage(
+                imageName: IconPaths.icShop,
+                onPress: () {},
+              ),
+              _CustomSvgImage(
+                imageName: IconPaths.icFavorite,
+                onPress: () {},
+              ),
+              _CustomSvgImage(
+                imageName: IconPaths.icChat,
+                onPress: () {},
+              ),
+              _CustomSvgImage(
+                imageName: IconPaths.icProfile,
+                onPress: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CustomSvgImage extends StatelessWidget {
+  const _CustomSvgImage({
+    Key? key,
+    required this.imageName,
+    required this.onPress,
+  }) : super(key: key);
+  final String imageName;
+  final Function()? onPress;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPress,
+      child: SvgPicture.asset(
+        imageName,
+        color: Colors.red,
       ),
     );
   }
