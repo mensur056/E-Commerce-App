@@ -9,10 +9,14 @@ class ProjectTheme {
         titleTextStyle: const TextTheme(headline2: TextStyle(color: Colors.white, fontSize: 20)).headline6),
   );
   ThemeData lightTheme = ThemeData(
+      iconTheme: const IconThemeData(
+        color: Colors.green,
+      ),
       appBarTheme: const AppBarTheme(
-    elevation: 0,
-    centerTitle: true,
-    iconTheme: IconThemeData(color: Colors.grey, size: 16),
-    color: Colors.white,
-  ));
+        titleTextStyle: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.grey, size: 16),
+        color: Colors.transparent,
+      ));
 }

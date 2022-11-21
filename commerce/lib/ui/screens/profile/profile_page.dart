@@ -18,30 +18,40 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: ''),
-        ],
-      ),
+      bottomNavigationBar: const CustomBottomAppBar(),
       appBar: _appBar(),
       body: Padding(
         padding: ProjectPaddingSymmetric.paddingHor20,
         child: ListView(
           children: [
             _sizedBox30(),
-            const CircleAvatar(
-              backgroundImage: AssetImage(
-                ImagePaths.profilePath,
+            CircleAvatar(
+              radius: 60,
+              backgroundColor: Colors.transparent,
+              child: SizedBox(
+                child: ClipOval(
+                  child: Image.asset(
+                    ImagePaths.profilePath,
+                  ),
+                ),
               ),
             ),
             _sizedBox30(),
-            const _ProfileCard(),
+            _ProfileCard(
+                image: Image.asset(IconPaths.icUserProf), onPress: () {}, title: ProjectProfileStrings.account),
             _sizedBox15(),
-            const _ProfileCard(),
+            _ProfileCard(
+                image: SvgPicture.asset(IconPaths.icNotification),
+                onPress: () {},
+                title: ProjectProfileStrings.notification),
             _sizedBox15(),
-            const _ProfileCard(),
+            _ProfileCard(
+                image: SvgPicture.asset(IconPaths.icSettings), onPress: () {}, title: ProjectProfileStrings.settings),
             _sizedBox15(),
+            _ProfileCard(image: SvgPicture.asset(IconPaths.icHelp), onPress: () {}, title: ProjectProfileStrings.help),
+            _sizedBox15(),
+            _ProfileCard(
+                image: SvgPicture.asset(IconPaths.icLogout), onPress: () {}, title: ProjectProfileStrings.logout),
           ],
         ),
       ),
@@ -64,33 +74,55 @@ class _ProfilePageState extends State<ProfilePage> {
     return AppBar(
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.chevron_left_outlined),
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
         ),
-        title: Text(
+        title: const Text(
           ProjectProfileStrings.profile,
-          style: Theme.of(context)
-              .textTheme
-              .headline6
-              ?.copyWith(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
         ));
+  }
+}
+
+class CustomBottomAppBar extends StatelessWidget {
+  const CustomBottomAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      elevation: 0,
+      child: Row(
+        children: const [Icon(Icons.add)],
+      ),
+    );
   }
 }
 
 class _ProfileCard extends StatelessWidget {
   const _ProfileCard({
     Key? key,
+    required this.title,
+    required this.onPress,
+    required this.image,
   }) : super(key: key);
+  final Widget image;
+  final String title;
+  final Function() onPress;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: const RoundedRectangleBorder(borderRadius: ProjectBorder.borderRadius12),
-      color: Colors.blue.shade100,
+      shape: const RoundedRectangleBorder(borderRadius: ProjectBorder.borderRadius16),
+      color: Colors.blue.shade50,
       child: Padding(
-        padding: ProjectPaddingAll.paddingAll16,
+        padding: ProjectPaddingAll.paddingAll8,
         child: ListTile(
-          leading: SvgPicture.asset(IconPaths.icHelp),
-          trailing: const Icon(Icons.chevron_right_outlined),
+          onTap: onPress,
+          title: Text(title),
+          leading: image,
+          trailing: const Icon(
+            Icons.arrow_forward_ios_outlined,
+          ),
         ),
       ),
     );
