@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:commerce/const/border/border_radius.dart';
+import 'package:commerce/const/colors/icon_colors.dart';
 import 'package:commerce/const/padding/padding_all.dart';
 import 'package:commerce/const/padding/padding_symmetric.dart';
 import 'package:commerce/const/paths/icon_paths.dart';
@@ -6,6 +9,7 @@ import 'package:commerce/const/paths/image_paths.dart';
 import 'package:commerce/const/strings/profile_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -67,39 +71,65 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-class _CustomCircleAvatar extends StatelessWidget {
+class _CustomCircleAvatar extends StatefulWidget {
   const _CustomCircleAvatar({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<_CustomCircleAvatar> createState() => _CustomCircleAvatarState();
+}
+
+class _CustomCircleAvatarState extends State<_CustomCircleAvatar> {
+  File? imageFile;
+
+  void getFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      setState(() {
+        imageFile = File(image.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: const Alignment(0, 1),
       children: [
-        CircleAvatar(
-          radius: MediaQuery.of(context).size.width * 0.2,
-          backgroundColor: Colors.transparent,
-          child: SizedBox(
-            child: ClipOval(
-              child: Image.asset(
-                ImagePaths.profilePath,
+        imageFile == null
+            ? CircleAvatar(
+                radius: MediaQuery.of(context).size.width * 0.2,
+                backgroundColor: Colors.transparent,
+                child: SizedBox(
+                  child: ClipOval(
+                    child: Image.asset(
+                      ImagePaths.profilePath,
+                    ),
+                  ),
+                ),
+              )
+            : CircleAvatar(
+                radius: MediaQuery.of(context).size.width * 0.2,
+                backgroundColor: Colors.transparent,
+                backgroundImage: FileImage(imageFile ?? File(ImagePaths.profilePath)),
               ),
-            ),
-          ),
-        ),
         Positioned(
           right: 100,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              getFromGallery();
+            },
             child: CircleAvatar(
               radius: MediaQuery.of(context).size.width * 0.06,
               backgroundColor: Colors.grey.shade200,
               child: SizedBox(
                 child: ClipOval(
-                    child: SvgPicture.asset(
-                  IconPaths.icCamera,
-                )),
+                  child: SvgPicture.asset(
+                    IconPaths.icCamera,
+                  ),
+                ),
               ),
             ),
           ),
@@ -129,18 +159,22 @@ class CustomBottomAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _CustomSvgImage(
+                color: IconColors.greyColor,
                 imageName: IconPaths.icShop,
                 onPress: () {},
               ),
               _CustomSvgImage(
+                color: IconColors.greyColor,
                 imageName: IconPaths.icFavorite,
                 onPress: () {},
               ),
               _CustomSvgImage(
+                color: IconColors.greyColor,
                 imageName: IconPaths.icChat,
                 onPress: () {},
               ),
               _CustomSvgImage(
+                color: IconColors.redColor,
                 imageName: IconPaths.icProfile,
                 onPress: () {},
               ),
@@ -157,16 +191,18 @@ class _CustomSvgImage extends StatelessWidget {
     Key? key,
     required this.imageName,
     required this.onPress,
+    required this.color,
   }) : super(key: key);
   final String imageName;
   final Function()? onPress;
+  final Color color;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPress,
       child: SvgPicture.asset(
         imageName,
-        color: Colors.red,
+        color: color,
       ),
     );
   }
@@ -192,7 +228,10 @@ class _ProfileCard extends StatelessWidget {
         padding: ProjectPaddingAll.paddingAll8,
         child: ListTile(
           onTap: onPress,
-          title: Text(title),
+          title: Text(
+            title,
+            style: TextStyle(color: Colors.grey.shade600),
+          ),
           leading: SvgPicture.asset(imagePath, color: Colors.red),
           trailing: const Icon(
             Icons.arrow_forward_ios_outlined,
