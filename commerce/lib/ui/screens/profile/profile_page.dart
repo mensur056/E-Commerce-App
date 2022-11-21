@@ -25,17 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: ListView(
           children: [
             _sizedBox36(),
-            CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.transparent,
-              child: SizedBox(
-                child: ClipOval(
-                  child: Image.asset(
-                    ImagePaths.profilePath,
-                  ),
-                ),
-              ),
-            ),
+            const _CustomCircleAvatar(),
             _sizedBox36(),
             _ProfileCard(imagePath: IconPaths.icProfile, onPress: () {}, title: ProjectProfileStrings.account),
             _sizedBox16(),
@@ -77,6 +67,48 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
+class _CustomCircleAvatar extends StatelessWidget {
+  const _CustomCircleAvatar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: const Alignment(0, 1),
+      children: [
+        CircleAvatar(
+          radius: MediaQuery.of(context).size.width * 0.2,
+          backgroundColor: Colors.transparent,
+          child: SizedBox(
+            child: ClipOval(
+              child: Image.asset(
+                ImagePaths.profilePath,
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          right: 100,
+          child: InkWell(
+            onTap: () {},
+            child: CircleAvatar(
+              radius: MediaQuery.of(context).size.width * 0.06,
+              backgroundColor: Colors.grey.shade200,
+              child: SizedBox(
+                child: ClipOval(
+                    child: SvgPicture.asset(
+                  IconPaths.icCamera,
+                )),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class CustomBottomAppBar extends StatelessWidget {
   const CustomBottomAppBar({
     Key? key,
@@ -92,7 +124,7 @@ class CustomBottomAppBar extends StatelessWidget {
       child: BottomAppBar(
         elevation: 0,
         child: Padding(
-          padding: ProjectPaddingSymmetric.paddingVer24,
+          padding: ProjectPaddingSymmetric.paddingVer28,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

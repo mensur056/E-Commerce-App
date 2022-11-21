@@ -11,4 +11,5 @@ class ProjectPaddingSymmetric {
   static const EdgeInsets paddingVer16 = EdgeInsets.symmetric(vertical: 16);
   static const EdgeInsets paddingVer20 = EdgeInsets.symmetric(vertical: 20);
   static const EdgeInsets paddingVer24 = EdgeInsets.symmetric(vertical: 24);
+  static const EdgeInsets paddingVer28 = EdgeInsets.symmetric(vertical: 28);
 }
