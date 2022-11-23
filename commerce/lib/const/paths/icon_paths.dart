@@ -11,4 +11,11 @@ class IconPaths {
   static const String icShop = 'assets/icons/ic_e_shop.svg';
   static const String icFavorite = 'assets/icons/ic_e_favorite.svg';
   static const String icChat = 'assets/icons/ic_e_chat.svg';
+
+  //SingUp Page Icons
+  static const String icLock = 'assets/icons/ic_e_lock.svg';
+  static const String icMail = 'assets/icons/ic_e_mail.svg';
+  static const String icTwitter = 'assets/icons/ic_e_twitter.svg';
+  static const String icFacebook = 'assets/icons/ic_e_facebook.svg';
+  static const String icGoogle = 'assets/icons/ic_e_google.svg';
 }

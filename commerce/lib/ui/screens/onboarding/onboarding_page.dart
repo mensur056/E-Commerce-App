@@ -3,6 +3,7 @@ import 'package:commerce/const/colors/button_colors.dart';
 import 'package:commerce/const/padding/padding_symmetric.dart';
 import 'package:commerce/const/paths/image_paths.dart';
 import 'package:commerce/const/strings/onboarding_strings.dart';
+import 'package:commerce/ui/screens/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,38 +16,77 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStateMixin {
   late final TabController _controller;
-  List<Widget> pages = [];
   @override
   void initState() {
     super.initState();
     _controller = TabController(length: 3, vsync: this);
   }
 
+  int indicatorIndex = 0;
+
+  void changeValue() {
+    setState(() {
+      indicatorIndex++;
+      print(indicatorIndex);
+      if (indicatorIndex == 3) {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) {
+            return const ProfilePage();
+          },
+        ));
+      } else {
+        _controller.animateTo(indicatorIndex);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: SafeArea(
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: ButtonColor.continueButton,
-              shape: const RoundedRectangleBorder(borderRadius: ProjectBorder.borderRadius16)),
-          onPressed: () {},
-          child: SizedBox(
-            height: MediaQuery.of(context).size.width * 0.15,
-            width: MediaQuery.of(context).size.width * 0.75,
-            child: Center(
-                child: Text(
-              ProjectOnboardingStrings.continueButton,
-              style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white),
-            )),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          TabPageSelector(
+              controller: _controller, selectedColor: ButtonColor.continueButton, color: ButtonColor.indicatorColor),
+          const SizedBox(
+            height: 50,
           ),
-        ),
+          _FloatingContinueButton(onPress: () {
+            changeValue();
+          }),
+        ],
       ),
       appBar: AppBar(),
       body: TabBarView(
         controller: _controller,
         children: const [FirstPage(), SecondPage(), ThreePage()],
+      ),
+    );
+  }
+}
+
+class _FloatingContinueButton extends StatelessWidget {
+  const _FloatingContinueButton({
+    Key? key,
+    required this.onPress,
+  }) : super(key: key);
+  final Function() onPress;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: ButtonColor.continueButton,
+          shape: const RoundedRectangleBorder(borderRadius: ProjectBorder.borderRadius16)),
+      onPressed: onPress,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.width * 0.15,
+        width: MediaQuery.of(context).size.width * 0.75,
+        child: Center(
+            child: Text(
+          ProjectOnboardingStrings.continueButton,
+          style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white),
+        )),
       ),
     );
   }
