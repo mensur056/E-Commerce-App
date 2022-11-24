@@ -25,18 +25,26 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text(ProjectSignInStrings.welcome),
+              const Text(
+                ProjectSignInStrings.welcome,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+              ),
+              _sizedBox30(),
               _signInTexts(ProjectSignInStrings.description),
+              _sizedBox60(),
               const CustomTextField(
                   title: ProjectSignUpStrings.email,
                   hintText: ProjectSignUpStrings.hintText1,
                   imagePath: IconPaths.icMail),
+              _sizedBox30(),
               const CustomTextField(
                   title: ProjectSignUpStrings.password,
                   hintText: ProjectSignUpStrings.hintText2,
                   imagePath: IconPaths.icLock),
+              _sizedBox30(),
               _checkBoxListTile(),
               ContinueButton(onPress: () {}),
+              _sizedBox60(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -54,6 +62,7 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
                   ),
                 ],
               ),
+              _sizedBox30(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -70,6 +79,18 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
           ),
         ),
       ),
+    );
+  }
+
+  SizedBox _sizedBox30() {
+    return const SizedBox(
+      height: 30,
+    );
+  }
+
+  SizedBox _sizedBox60() {
+    return const SizedBox(
+      height: 60,
     );
   }
 
