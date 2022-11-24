@@ -1,12 +1,11 @@
 import 'package:commerce/const/padding/padding_all.dart';
-import 'package:commerce/const/padding/padding_symmetric.dart';
 import 'package:commerce/const/paths/icon_paths.dart';
 import 'package:commerce/const/strings/signup_strings.dart';
 import 'package:commerce/ui/widgets/appbar_back_button.dart';
 import 'package:commerce/ui/widgets/continue_button.dart';
 import 'package:commerce/ui/widgets/custom_textfield.dart';
+import 'package:commerce/ui/widgets/social_media_avatar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -52,15 +51,15 @@ class _SignUpPageState extends State<SignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SignUpSocialMedia(
+                  SocialMediaAvatar(
                     iconPath: IconPaths.icGoogle,
                     onPress: () {},
                   ),
-                  SignUpSocialMedia(
+                  SocialMediaAvatar(
                     iconPath: IconPaths.icFacebook,
                     onPress: () {},
                   ),
-                  SignUpSocialMedia(
+                  SocialMediaAvatar(
                     iconPath: IconPaths.icTwitter,
                     onPress: () {},
                   )
@@ -99,31 +98,6 @@ class _SignUpPageState extends State<SignUpPage> {
     return AppBar(
       leading: AppBarBackButton(onPress: () {}),
       title: const Text(ProjectSignUpStrings.signUp),
-    );
-  }
-}
-
-class SignUpSocialMedia extends StatelessWidget {
-  const SignUpSocialMedia({
-    Key? key,
-    required this.iconPath,
-    required this.onPress,
-  }) : super(key: key);
-  final String iconPath;
-  final Function() onPress;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: ProjectPaddingSymmetric.paddingHor8,
-      child: InkWell(
-        onTap: onPress,
-        child: CircleAvatar(
-          backgroundColor: Colors.grey.shade200,
-          child: ClipOval(
-            child: SvgPicture.asset(iconPath),
-          ),
-        ),
-      ),
     );
   }
 }

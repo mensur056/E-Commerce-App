@@ -3,7 +3,9 @@ import 'package:commerce/const/paths/icon_paths.dart';
 import 'package:commerce/const/strings/signin_strings.dart';
 import 'package:commerce/const/strings/signup_strings.dart';
 import 'package:commerce/ui/widgets/appbar_back_button.dart';
+import 'package:commerce/ui/widgets/continue_button.dart';
 import 'package:commerce/ui/widgets/custom_textfield.dart';
+import 'package:commerce/ui/widgets/social_media_avatar.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
@@ -33,26 +35,36 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
                   title: ProjectSignUpStrings.password,
                   hintText: ProjectSignUpStrings.hintText2,
                   imagePath: IconPaths.icLock),
-              CheckboxListTile(
-                contentPadding: EdgeInsets.zero,
-                controlAffinity: ListTileControlAffinity.leading,
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
-                      ProjectSignInStrings.remember,
-                      style: TextStyle(color: Colors.grey, fontSize: 14),
-                    ),
-                    Text(
-                      style: TextStyle(decoration: TextDecoration.underline, color: Colors.grey, fontSize: 14),
-                      ProjectSignInStrings.forget,
-                    ),
-                  ],
-                ),
-                value: isCheck ? true : false,
-                onChanged: (value) {
-                  changeValue();
-                },
+              _checkBoxListTile(),
+              ContinueButton(onPress: () {}),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialMediaAvatar(
+                    iconPath: IconPaths.icGoogle,
+                    onPress: () {},
+                  ),
+                  SocialMediaAvatar(
+                    iconPath: IconPaths.icFacebook,
+                    onPress: () {},
+                  ),
+                  SocialMediaAvatar(
+                    iconPath: IconPaths.icTwitter,
+                    onPress: () {},
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _signInTexts(ProjectSignInStrings.subtitle),
+                  TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        ProjectSignInStrings.signUp,
+                        style: TextStyle(color: Color(0xFFFF7643)),
+                      ))
+                ],
               )
             ],
           ),
@@ -61,7 +73,35 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
     );
   }
 
-  Text _signInTexts(String text) => Text(text);
+  CheckboxListTile _checkBoxListTile() {
+    return CheckboxListTile(
+      contentPadding: EdgeInsets.zero,
+      controlAffinity: ListTileControlAffinity.leading,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text(
+            ProjectSignInStrings.remember,
+            style: TextStyle(color: Colors.grey, fontSize: 14),
+          ),
+          Text(
+            style: TextStyle(decoration: TextDecoration.underline, color: Colors.grey, fontSize: 14),
+            ProjectSignInStrings.forget,
+          ),
+        ],
+      ),
+      value: isCheck ? true : false,
+      onChanged: (value) {
+        changeValue();
+      },
+    );
+  }
+
+  Text _signInTexts(String text) => Text(
+        text,
+        style: TextStyle(color: Colors.grey.shade600),
+        textAlign: TextAlign.center,
+      );
 
   AppBar _appBar() {
     return AppBar(
