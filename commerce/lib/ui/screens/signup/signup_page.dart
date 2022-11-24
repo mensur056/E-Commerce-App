@@ -96,7 +96,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   AppBar _appBar() {
     return AppBar(
-      leading: AppBarBackButton(onPress: () {}),
+      leading: AppBarBackButton(onPress: () {
+        Navigator.of(context).pop();
+      }),
       title: const Text(ProjectSignUpStrings.signUp),
     );
   }

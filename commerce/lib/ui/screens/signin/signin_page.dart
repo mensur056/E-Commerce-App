@@ -2,6 +2,7 @@ import 'package:commerce/const/padding/padding_all.dart';
 import 'package:commerce/const/paths/icon_paths.dart';
 import 'package:commerce/const/strings/signin_strings.dart';
 import 'package:commerce/const/strings/signup_strings.dart';
+import 'package:commerce/ui/screens/signup/signup_page.dart';
 import 'package:commerce/ui/widgets/appbar_back_button.dart';
 import 'package:commerce/ui/widgets/continue_button.dart';
 import 'package:commerce/ui/widgets/custom_textfield.dart';
@@ -68,11 +69,16 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
                 children: [
                   _signInTexts(ProjectSignInStrings.subtitle),
                   TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        ProjectSignInStrings.signUp,
-                        style: TextStyle(color: Color(0xFFFF7643)),
-                      ))
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const SignUpPage(),
+                      ));
+                    },
+                    child: const Text(
+                      ProjectSignInStrings.signUp,
+                      style: TextStyle(color: Color(0xFFFF7643)),
+                    ),
+                  )
                 ],
               )
             ],

@@ -3,7 +3,7 @@ import 'package:commerce/const/colors/button_colors.dart';
 import 'package:commerce/const/padding/padding_symmetric.dart';
 import 'package:commerce/const/paths/image_paths.dart';
 import 'package:commerce/const/strings/onboarding_strings.dart';
-import 'package:commerce/ui/screens/profile/profile_page.dart';
+import 'package:commerce/ui/screens/signin/signin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -27,11 +27,10 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
   void changeValue() {
     setState(() {
       indicatorIndex++;
-      print(indicatorIndex);
       if (indicatorIndex == 3) {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
-            return const ProfilePage();
+            return const SignInPage();
           },
         ));
       } else {
