@@ -2,6 +2,7 @@ import 'package:commerce/const/padding/padding_symmetric.dart';
 import 'package:commerce/const/paths/icon_paths.dart';
 import 'package:commerce/const/strings/profile_strings.dart';
 import 'package:commerce/ui/screens/profile/widget/profile_card.dart';
+import 'package:commerce/ui/widgets/appbar_back_button.dart';
 import 'package:commerce/ui/widgets/custom_bottom_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -56,12 +57,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   AppBar _appBar() {
     return AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back_ios_new_outlined),
-        ),
-        title: const Text(
-          ProjectProfileStrings.profile,
-        ));
+      leading: AppBarBackButton(onPress: () {}),
+      title: const Text(
+        ProjectProfileStrings.profile,
+      ),
+    );
   }
 }

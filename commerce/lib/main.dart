@@ -1,5 +1,5 @@
 import 'package:commerce/const/theme/theme.dart';
-import 'package:commerce/ui/screens/signup/signup_page.dart';
+import 'package:commerce/ui/screens/signin/signin_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: title,
       theme: ProjectTheme().lightTheme,
-      home: const SignUpPage(),
+      home: const SignInPage(),
     );
   }
 }

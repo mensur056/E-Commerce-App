@@ -1,9 +1,10 @@
-import 'package:commerce/const/border/border_radius.dart';
 import 'package:commerce/const/padding/padding_all.dart';
 import 'package:commerce/const/padding/padding_symmetric.dart';
 import 'package:commerce/const/paths/icon_paths.dart';
 import 'package:commerce/const/strings/signup_strings.dart';
+import 'package:commerce/ui/widgets/appbar_back_button.dart';
 import 'package:commerce/ui/widgets/continue_button.dart';
+import 'package:commerce/ui/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -96,10 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   AppBar _appBar() {
     return AppBar(
-      leading: IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.arrow_back_ios_new_outlined),
-      ),
+      leading: AppBarBackButton(onPress: () {}),
       title: const Text(ProjectSignUpStrings.signUp),
     );
   }
@@ -125,41 +123,6 @@ class SignUpSocialMedia extends StatelessWidget {
             child: SvgPicture.asset(iconPath),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    Key? key,
-    required this.title,
-    required this.hintText,
-    required this.imagePath,
-  }) : super(key: key);
-  final String title;
-  final String hintText;
-  final String imagePath;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-        contentPadding: const EdgeInsets.only(left: 32, top: 20, bottom: 20),
-        suffixIcon: SvgPicture.asset(imagePath, fit: BoxFit.none),
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: ProjectBorder.borderRadius40,
-          borderSide: BorderSide(color: Colors.grey, width: 1.0),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: ProjectBorder.borderRadius40,
-          borderSide: BorderSide(color: Colors.grey, width: 1.0),
-        ),
-        hintText: hintText,
-        labelText: title,
-        alignLabelWithHint: true,
       ),
     );
   }
