@@ -94,27 +94,27 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
     );
   }
 
-  CheckboxListTile _checkBoxListTile() {
-    return CheckboxListTile(
-      contentPadding: EdgeInsets.zero,
-      controlAffinity: ListTileControlAffinity.leading,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text(
-            ProjectSignInStrings.remember,
-            style: TextStyle(color: Colors.grey, fontSize: 14),
-          ),
-          Text(
+  Widget _checkBoxListTile() {
+    return Row(
+      children: [
+        Checkbox(
+            value: isCheck ? true : false,
+            onChanged: (value) {
+              changeValue();
+            }),
+        const Text(
+          ProjectSignInStrings.remember,
+          style: TextStyle(color: Colors.grey, fontSize: 14),
+        ),
+        const Spacer(),
+        TextButton(
+          onPressed: () {},
+          child: const Text(
             style: TextStyle(decoration: TextDecoration.underline, color: Colors.grey, fontSize: 14),
             ProjectSignInStrings.forget,
           ),
-        ],
-      ),
-      value: isCheck ? true : false,
-      onChanged: (value) {
-        changeValue();
-      },
+        ),
+      ],
     );
   }
 
