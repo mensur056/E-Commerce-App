@@ -3,6 +3,7 @@ import 'package:commerce/const/paths/icon_paths.dart';
 import 'package:commerce/const/strings/signin_strings.dart';
 import 'package:commerce/const/strings/signup_strings.dart';
 import 'package:commerce/ui/screens/signup/signup_page.dart';
+import 'package:commerce/ui/widgets/abstract_class.dart';
 import 'package:commerce/ui/widgets/appbar_back_button.dart';
 import 'package:commerce/ui/widgets/continue_button.dart';
 import 'package:commerce/ui/widgets/custom_textfield.dart';
@@ -16,75 +17,83 @@ class SignInPage extends StatefulWidget {
   State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
+class _SignInPageState extends ProjectLoading<SignInPage> {
+  @override
+  void initState() {
+    super.initState();
+    changeLoading();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: Padding(
-        padding: ProjectPaddingAll.paddingAll20 * 2,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const Text(
-                ProjectSignInStrings.welcome,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-              ),
-              _sizedBox30(),
-              _signInTexts(ProjectSignInStrings.description),
-              _sizedBox60(),
-              const CustomTextField(
-                  title: ProjectSignUpStrings.email,
-                  hintText: ProjectSignUpStrings.hintText1,
-                  imagePath: IconPaths.icMail),
-              _sizedBox30(),
-              const CustomTextField(
-                  title: ProjectSignUpStrings.password,
-                  hintText: ProjectSignUpStrings.hintText2,
-                  imagePath: IconPaths.icLock),
-              _sizedBox30(),
-              _checkBoxListTile(),
-              ContinueButton(onPress: () {}),
-              _sizedBox60(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SocialMediaAvatar(
-                    iconPath: IconPaths.icGoogle,
-                    onPress: () {},
-                  ),
-                  SocialMediaAvatar(
-                    iconPath: IconPaths.icFacebook,
-                    onPress: () {},
-                  ),
-                  SocialMediaAvatar(
-                    iconPath: IconPaths.icTwitter,
-                    onPress: () {},
-                  ),
-                ],
-              ),
-              _sizedBox30(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _signInTexts(ProjectSignInStrings.subtitle),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const SignUpPage(),
-                      ));
-                    },
-                    child: const Text(
-                      ProjectSignInStrings.signUp,
-                      style: TextStyle(color: Color(0xFFFF7643)),
+      body: isLoading
+          ? Padding(
+              padding: ProjectPaddingAll.paddingAll20 * 2,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const Text(
+                      ProjectSignInStrings.welcome,
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
                     ),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
+                    _sizedBox30(),
+                    _signInTexts(ProjectSignInStrings.description),
+                    _sizedBox60(),
+                    const CustomTextField(
+                        title: ProjectSignUpStrings.email,
+                        hintText: ProjectSignUpStrings.hintText1,
+                        imagePath: IconPaths.icMail),
+                    _sizedBox30(),
+                    const CustomTextField(
+                        title: ProjectSignUpStrings.password,
+                        hintText: ProjectSignUpStrings.hintText2,
+                        imagePath: IconPaths.icLock),
+                    _sizedBox30(),
+                    _checkBoxListTile(),
+                    ContinueButton(onPress: () {}),
+                    _sizedBox60(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SocialMediaAvatar(
+                          iconPath: IconPaths.icGoogle,
+                          onPress: () {},
+                        ),
+                        SocialMediaAvatar(
+                          iconPath: IconPaths.icFacebook,
+                          onPress: () {},
+                        ),
+                        SocialMediaAvatar(
+                          iconPath: IconPaths.icTwitter,
+                          onPress: () {},
+                        ),
+                      ],
+                    ),
+                    _sizedBox30(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _signInTexts(ProjectSignInStrings.subtitle),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const SignUpPage(),
+                            ));
+                          },
+                          child: const Text(
+                            ProjectSignInStrings.signUp,
+                            style: TextStyle(color: Color(0xFFFF7643)),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 
@@ -106,7 +115,7 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
         Checkbox(
             value: isCheck ? true : false,
             onChanged: (value) {
-              changeValue();
+              changeCheck();
             }),
         const Text(
           ProjectSignInStrings.remember,
@@ -135,14 +144,5 @@ class _SignInPageState extends ChangeCheckBoxValue<SignInPage> {
       leading: AppBarBackButton(onPress: () {}),
       title: const Text(ProjectSignInStrings.signIn),
     );
-  }
-}
-
-abstract class ChangeCheckBoxValue<T extends StatefulWidget> extends State<T> {
-  bool isCheck = false;
-  void changeValue() {
-    setState(() {
-      isCheck = !isCheck;
-    });
   }
 }

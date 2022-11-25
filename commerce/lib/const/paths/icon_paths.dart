@@ -18,4 +18,8 @@ class IconPaths {
   static const String icTwitter = 'assets/icons/ic_e_twitter.svg';
   static const String icFacebook = 'assets/icons/ic_e_facebook.svg';
   static const String icGoogle = 'assets/icons/ic_e_google.svg';
+
+  //HomePage icons
+  static const String icBasket = 'assets/icons/ic_e_basket.svg';
+  static const String icSearch = 'assets/icons/ic_e_search.svg';
 }

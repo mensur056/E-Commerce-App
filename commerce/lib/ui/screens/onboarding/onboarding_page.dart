@@ -4,6 +4,7 @@ import 'package:commerce/const/padding/padding_symmetric.dart';
 import 'package:commerce/const/paths/image_paths.dart';
 import 'package:commerce/const/strings/onboarding_strings.dart';
 import 'package:commerce/ui/screens/signin/signin_page.dart';
+import 'package:commerce/ui/widgets/abstract_class.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +15,7 @@ class OnboardingPage extends StatefulWidget {
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStateMixin {
+class _OnboardingPageState extends ProjectLoading<OnboardingPage> with TickerProviderStateMixin {
   late final TabController _controller;
   @override
   void initState() {
@@ -28,11 +29,14 @@ class _OnboardingPageState extends State<OnboardingPage> with TickerProviderStat
     setState(() {
       indicatorIndex++;
       if (indicatorIndex == 3) {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) {
-            return const SignInPage();
-          },
-        ));
+        changeLoading();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return const SignInPage();
+            },
+          ),
+        );
       } else {
         _controller.animateTo(indicatorIndex);
       }
