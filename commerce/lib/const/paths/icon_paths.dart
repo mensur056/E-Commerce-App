@@ -22,4 +22,8 @@ class IconPaths {
   //HomePage icons
   static const String icBasket = 'assets/icons/ic_e_basket.svg';
   static const String icSearch = 'assets/icons/ic_e_search.svg';
+  static const String icDiscover = 'assets/icons/ic_e_discover.svg';
+  static const String icGift = 'assets/icons/ic_e_gift.svg';
+  static const String icFlash = 'assets/icons/ic_e_flash.svg';
+  static const String icBill = 'assets/icons/ic_e_bill.svg';
 }
