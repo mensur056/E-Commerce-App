@@ -63,14 +63,14 @@ class _OnboardingPageState extends ProjectLoading<OnboardingPage> with TickerPro
       appBar: AppBar(),
       body: TabBarView(
         controller: _controller,
-        children: const [FirstPage(), SecondPage(), ThreePage()],
+        children: [FirstPage(), SecondPage(), ThreePage()],
       ),
     );
   }
 }
 
-class _FloatingContinueButton extends StatelessWidget {
-  const _FloatingContinueButton({
+class _FloatingContinueButton extends StatelessWidget with ProjectOnboardingStrings {
+  _FloatingContinueButton({
     Key? key,
     required this.onPress,
   }) : super(key: key);
@@ -87,7 +87,7 @@ class _FloatingContinueButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.75,
         child: Center(
             child: Text(
-          ProjectOnboardingStrings.continueButton,
+          continueButton,
           style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white),
         )),
       ),
@@ -95,8 +95,8 @@ class _FloatingContinueButton extends StatelessWidget {
   }
 }
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
+class FirstPage extends StatelessWidget with ProjectOnboardingStrings, ImagePaths {
+  FirstPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -105,11 +105,11 @@ class FirstPage extends StatelessWidget {
         padding: ProjectPaddingSymmetric.paddingHor16,
         child: Column(
           children: [
-            const _TokotoText(),
-            const _DescriptionText(
-              text: ProjectOnboardingStrings.description1,
+            _TokotoText(),
+            _DescriptionText(
+              text: description1,
             ),
-            Image.asset(ImagePaths.splash1),
+            Image.asset(splash1),
           ],
         ),
       ),
@@ -117,8 +117,8 @@ class FirstPage extends StatelessWidget {
   }
 }
 
-class SecondPage extends StatelessWidget {
-  const SecondPage({super.key});
+class SecondPage extends StatelessWidget with ProjectOnboardingStrings, ImagePaths {
+  SecondPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -127,11 +127,11 @@ class SecondPage extends StatelessWidget {
         padding: ProjectPaddingSymmetric.paddingHor16,
         child: Column(
           children: [
-            const _TokotoText(),
-            const _DescriptionText(
-              text: ProjectOnboardingStrings.description2,
+            _TokotoText(),
+            _DescriptionText(
+              text: description2,
             ),
-            Image.asset(ImagePaths.splash2),
+            Image.asset(splash2),
           ],
         ),
       ),
@@ -139,8 +139,8 @@ class SecondPage extends StatelessWidget {
   }
 }
 
-class ThreePage extends StatelessWidget {
-  const ThreePage({super.key});
+class ThreePage extends StatelessWidget with ProjectOnboardingStrings, ImagePaths {
+  ThreePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -149,11 +149,11 @@ class ThreePage extends StatelessWidget {
         padding: ProjectPaddingSymmetric.paddingHor16,
         child: Column(
           children: [
-            const _TokotoText(),
-            const _DescriptionText(
-              text: ProjectOnboardingStrings.description3,
+            _TokotoText(),
+            _DescriptionText(
+              text: description3,
             ),
-            Image.asset(ImagePaths.splash3),
+            Image.asset(splash3),
           ],
         ),
       ),
@@ -161,8 +161,8 @@ class ThreePage extends StatelessWidget {
   }
 }
 
-class _TokotoText extends StatelessWidget {
-  const _TokotoText({
+class _TokotoText extends StatelessWidget with ProjectOnboardingStrings {
+  _TokotoText({
     Key? key,
   }) : super(key: key);
 
@@ -171,7 +171,7 @@ class _TokotoText extends StatelessWidget {
     return Padding(
       padding: ProjectPaddingSymmetric.paddingVer8,
       child: Text(
-        ProjectOnboardingStrings.tokoto,
+        tokoto,
         style: GoogleFonts.roboto(color: ButtonColor.continueButton, fontSize: 36, fontWeight: FontWeight.bold),
       ),
     );

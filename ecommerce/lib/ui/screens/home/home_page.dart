@@ -1,4 +1,7 @@
 import 'package:ecommerce/const/paths/icon_paths.dart';
+import 'package:ecommerce/const/paths/image_paths.dart';
+import 'package:ecommerce/ui/screens/home/widget/popular_card_section.dart';
+import 'package:ecommerce/ui/screens/home/widget/special_card_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,7 +18,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with ProjectHomeStrings {
+class _HomePageState extends State<HomePage> with ProjectHomeStrings, ImagePaths {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +34,11 @@ class _HomePageState extends State<HomePage> with ProjectHomeStrings {
             _sizedBox25(),
             InfoTextSection(),
             _sizedBox25(),
+            SpecialCardSection(),
+            _sizedBox25(),
+            InfoTextSection2(),
+            _sizedBox25(),
+            PopularCardSection()
           ],
         ),
       ),
@@ -73,6 +81,7 @@ class _HomePageState extends State<HomePage> with ProjectHomeStrings {
   }
 }
 
+// ignore: must_be_immutable
 class InfoTextSection extends StatelessWidget with ProjectHomeStrings {
   InfoTextSection({
     Key? key,
@@ -84,6 +93,29 @@ class InfoTextSection extends StatelessWidget with ProjectHomeStrings {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         _infoTexts(special, const TextStyle(fontSize: 20)),
+        TextButton(onPressed: () {}, child: _infoTexts(seeMore, const TextStyle(color: Colors.grey)))
+      ],
+    );
+  }
+
+  Text _infoTexts(String title, TextStyle style) => Text(
+        title,
+        style: style,
+      );
+}
+
+// ignore: must_be_immutable
+class InfoTextSection2 extends StatelessWidget with ProjectHomeStrings {
+  InfoTextSection2({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _infoTexts(popular, const TextStyle(fontSize: 20)),
         TextButton(onPressed: () {}, child: _infoTexts(seeMore, const TextStyle(color: Colors.grey)))
       ],
     );

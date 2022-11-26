@@ -15,7 +15,7 @@ class CustomCircleAvatar extends StatefulWidget {
   State<CustomCircleAvatar> createState() => _CustomCircleAvatarState();
 }
 
-class _CustomCircleAvatarState extends State<CustomCircleAvatar> {
+class _CustomCircleAvatarState extends State<CustomCircleAvatar> with ImagePaths {
   File? imageFile;
 
   void getFromGallery() async {
@@ -40,7 +40,7 @@ class _CustomCircleAvatarState extends State<CustomCircleAvatar> {
                 child: SizedBox(
                   child: ClipOval(
                     child: Image.asset(
-                      ImagePaths.profilePath,
+                      profilePath,
                     ),
                   ),
                 ),
@@ -48,7 +48,7 @@ class _CustomCircleAvatarState extends State<CustomCircleAvatar> {
             : CircleAvatar(
                 radius: MediaQuery.of(context).size.width * 0.2,
                 backgroundColor: Colors.transparent,
-                backgroundImage: FileImage(imageFile ?? File(ImagePaths.profilePath)),
+                backgroundImage: FileImage(imageFile ?? File(profilePath)),
               ),
         Positioned(
           right: 100,

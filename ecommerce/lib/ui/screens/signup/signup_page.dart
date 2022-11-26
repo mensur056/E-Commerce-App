@@ -14,7 +14,7 @@ class SignUpPage extends StatefulWidget {
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<SignUpPage> with ProjectSignUpStrings {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,27 +24,18 @@ class _SignUpPageState extends State<SignUpPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const Text(
-                ProjectSignUpStrings.register,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+              Text(
+                register,
+                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
               ),
               _sizedBox30(),
-              _signUpTexts(ProjectSignUpStrings.description),
+              _signUpTexts(description),
               _sizedBox30(),
-              const CustomTextField(
-                  title: ProjectSignUpStrings.email,
-                  hintText: ProjectSignUpStrings.hintText1,
-                  imagePath: IconPaths.icMail),
+              CustomTextField(title: email, hintText: hintText1, imagePath: IconPaths.icMail),
               _sizedBox30(),
-              const CustomTextField(
-                  title: ProjectSignUpStrings.password,
-                  hintText: ProjectSignUpStrings.hintText2,
-                  imagePath: IconPaths.icLock),
+              CustomTextField(title: password, hintText: hintText2, imagePath: IconPaths.icLock),
               _sizedBox30(),
-              const CustomTextField(
-                  title: ProjectSignUpStrings.confirmPassword,
-                  hintText: ProjectSignUpStrings.hintText3,
-                  imagePath: IconPaths.icLock),
+              CustomTextField(title: confirmPassword, hintText: hintText3, imagePath: IconPaths.icLock),
               _sizedBox30(),
               ContinueButton(onPress: () {}),
               _sizedBox60(),
@@ -66,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
               _sizedBox30(),
-              _signUpTexts(ProjectSignUpStrings.subtitle)
+              _signUpTexts(subtitle)
             ],
           ),
         ),
@@ -99,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
       leading: AppBarBackButton(onPress: () {
         Navigator.of(context).pop();
       }),
-      title: const Text(ProjectSignUpStrings.signUp),
+      title: Text(signUp),
     );
   }
 }

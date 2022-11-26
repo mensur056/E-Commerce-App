@@ -15,7 +15,7 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends State<ProfilePage> with ProjectProfileStrings {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,15 +28,15 @@ class _ProfilePageState extends State<ProfilePage> {
             _sizedBox36(),
             const CustomCircleAvatar(),
             _sizedBox36(),
-            ProfileCard(imagePath: IconPaths.icProfile, onPress: () {}, title: ProjectProfileStrings.account),
+            ProfileCard(imagePath: IconPaths.icProfile, onPress: () {}, title: account),
             _sizedBox16(),
-            ProfileCard(imagePath: IconPaths.icNotification, onPress: () {}, title: ProjectProfileStrings.notification),
+            ProfileCard(imagePath: IconPaths.icNotification, onPress: () {}, title: notification),
             _sizedBox16(),
-            ProfileCard(imagePath: IconPaths.icSettings, onPress: () {}, title: ProjectProfileStrings.settings),
+            ProfileCard(imagePath: IconPaths.icSettings, onPress: () {}, title: settings),
             _sizedBox16(),
-            ProfileCard(imagePath: IconPaths.icHelp, onPress: () {}, title: ProjectProfileStrings.help),
+            ProfileCard(imagePath: IconPaths.icHelp, onPress: () {}, title: help),
             _sizedBox16(),
-            ProfileCard(imagePath: IconPaths.icLogout, onPress: () {}, title: ProjectProfileStrings.logout),
+            ProfileCard(imagePath: IconPaths.icLogout, onPress: () {}, title: logout),
           ],
         ),
       ),
@@ -58,8 +58,8 @@ class _ProfilePageState extends State<ProfilePage> {
   AppBar _appBar() {
     return AppBar(
       leading: AppBarBackButton(onPress: () {}),
-      title: const Text(
-        ProjectProfileStrings.profile,
+      title: Text(
+        profile,
       ),
     );
   }

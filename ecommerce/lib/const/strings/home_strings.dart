@@ -13,4 +13,9 @@ mixin ProjectHomeStrings {
   String special = 'Special for you';
   String popular = 'Popular Product';
   String seeMore = 'See More';
+
+  String smart = 'Smartphone';
+  String brand = '18 Brands';
+  String fashion = 'Fashion';
+  String brand24 = '24 Brands';
 }

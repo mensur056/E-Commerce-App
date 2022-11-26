@@ -17,7 +17,7 @@ class SignInPage extends StatefulWidget {
   State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInPageState extends ProjectLoading<SignInPage> {
+class _SignInPageState extends ProjectLoading<SignInPage> with ProjectSignInStrings, ProjectSignUpStrings {
   @override
   void initState() {
     super.initState();
@@ -34,22 +34,16 @@ class _SignInPageState extends ProjectLoading<SignInPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const Text(
-                      ProjectSignInStrings.welcome,
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                    Text(
+                      welcome,
+                      style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
                     ),
                     _sizedBox30(),
-                    _signInTexts(ProjectSignInStrings.description),
+                    _signInTexts(description),
                     _sizedBox60(),
-                    const CustomTextField(
-                        title: ProjectSignUpStrings.email,
-                        hintText: ProjectSignUpStrings.hintText1,
-                        imagePath: IconPaths.icMail),
+                    CustomTextField(title: email, hintText: hintText1, imagePath: IconPaths.icMail),
                     _sizedBox30(),
-                    const CustomTextField(
-                        title: ProjectSignUpStrings.password,
-                        hintText: ProjectSignUpStrings.hintText2,
-                        imagePath: IconPaths.icLock),
+                    CustomTextField(title: password, hintText: hintText2, imagePath: IconPaths.icLock),
                     _sizedBox30(),
                     _checkBoxListTile(),
                     ContinueButton(onPress: () {}),
@@ -75,16 +69,16 @@ class _SignInPageState extends ProjectLoading<SignInPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _signInTexts(ProjectSignInStrings.subtitle),
+                        _signInTexts(subtitle),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const SignUpPage(),
                             ));
                           },
-                          child: const Text(
-                            ProjectSignInStrings.signUp,
-                            style: TextStyle(color: Color(0xFFFF7643)),
+                          child: Text(
+                            signUp,
+                            style: const TextStyle(color: Color(0xFFFF7643)),
                           ),
                         )
                       ],
@@ -117,16 +111,16 @@ class _SignInPageState extends ProjectLoading<SignInPage> {
             onChanged: (value) {
               changeCheck();
             }),
-        const Text(
-          ProjectSignInStrings.remember,
-          style: TextStyle(color: Colors.grey, fontSize: 14),
+        Text(
+          remember,
+          style: const TextStyle(color: Colors.grey, fontSize: 14),
         ),
         const Spacer(),
         TextButton(
           onPressed: () {},
-          child: const Text(
-            style: TextStyle(decoration: TextDecoration.underline, color: Colors.grey, fontSize: 14),
-            ProjectSignInStrings.forget,
+          child: Text(
+            style: const TextStyle(decoration: TextDecoration.underline, color: Colors.grey, fontSize: 14),
+            forget,
           ),
         ),
       ],
@@ -142,7 +136,7 @@ class _SignInPageState extends ProjectLoading<SignInPage> {
   AppBar _appBar() {
     return AppBar(
       leading: AppBarBackButton(onPress: () {}),
-      title: const Text(ProjectSignInStrings.signIn),
+      title: Text(signIn),
     );
   }
 }

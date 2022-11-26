@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../../const/border/border_radius.dart';
 import '../../const/colors/button_colors.dart';
 import '../../const/strings/onboarding_strings.dart';
 
-class ContinueButton extends StatelessWidget {
-  const ContinueButton({
+class ContinueButton extends StatelessWidget with ProjectOnboardingStrings {
+  ContinueButton({
     Key? key,
     required this.onPress,
   }) : super(key: key);
@@ -23,7 +22,7 @@ class ContinueButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.75,
         child: Center(
           child: Text(
-            ProjectOnboardingStrings.continueButton,
+            continueButton,
             style: Theme.of(context).textTheme.headline6?.copyWith(color: Colors.white),
           ),
         ),
