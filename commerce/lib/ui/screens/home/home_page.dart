@@ -63,38 +63,49 @@ class _HomePageState extends State<HomePage> {
           filled: true,
           fillColor: Colors.grey.shade200,
           focusColor: Colors.grey,
-          hintText: 'Search product',
+          hintText: ProjectHomeStrings.hintText,
+          hintStyle: const TextStyle(color: Colors.grey),
           prefixIcon: SvgPicture.asset(IconPaths.icSearch, fit: BoxFit.none),
           enabledBorder: const OutlineInputBorder(
               borderRadius: ProjectBorder.borderRadius16, borderSide: BorderSide(color: Colors.transparent)),
         ),
       ),
-      actions: [
+      actions: const [
         Padding(
           padding: ProjectPaddingSymmetric.paddingHor8,
-          child: InkWell(
-            onTap: () {},
-            child: CircleAvatar(
-              backgroundColor: Colors.grey.shade200,
-              child: ClipOval(
-                child: SvgPicture.asset(IconPaths.icBasket),
-              ),
-            ),
-          ),
+          child: AppBarIcon(iconName: IconPaths.icBasket),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 20),
-          child: InkWell(
-            onTap: () {},
-            child: CircleAvatar(
-              backgroundColor: Colors.grey.shade200,
-              child: ClipOval(
-                child: SvgPicture.asset(IconPaths.icNotification),
-              ),
-            ),
+          padding: EdgeInsets.only(right: 20),
+          child: AppBarIcon(
+            iconName: IconPaths.icNotification,
           ),
         )
       ],
+    );
+  }
+}
+
+class AppBarIcon extends StatelessWidget {
+  const AppBarIcon({
+    Key? key,
+    required this.iconName,
+  }) : super(key: key);
+  final String iconName;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: CircleAvatar(
+        radius: 24,
+        backgroundColor: Colors.grey.shade200,
+        child: ClipOval(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SvgPicture.asset(iconName, fit: BoxFit.none),
+          ),
+        ),
+      ),
     );
   }
 }

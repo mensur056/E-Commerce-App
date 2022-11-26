@@ -25,7 +25,7 @@ class CategoryIcon extends StatelessWidget {
           ),
           child: Padding(
             padding: ProjectPaddingAll.paddingAll16,
-            child: SvgPicture.asset(iconName),
+            child: SvgPicture.asset(iconName, fit: BoxFit.none),
           ),
         ),
         Padding(

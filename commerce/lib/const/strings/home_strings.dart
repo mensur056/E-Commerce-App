@@ -1,7 +1,7 @@
 class ProjectHomeStrings {
   static const String cardTitle = 'A Summer Surprise';
   static const String cashBack = 'Cashback 20%';
-
+  static const String hintText = 'Search product';
   //Catagory icon title
   static const String flash = 'Flash\nDeal';
   static const String bill = 'Bill';
