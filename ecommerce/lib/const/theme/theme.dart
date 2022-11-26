@@ -9,6 +9,7 @@ class ProjectTheme {
         titleTextStyle: const TextTheme(headline2: TextStyle(color: Colors.white, fontSize: 20)).headline6),
   );
   ThemeData lightTheme = ThemeData(
+      scaffoldBackgroundColor: Colors.grey.shade100,
       iconTheme: const IconThemeData(size: 16),
       appBarTheme: const AppBarTheme(
         titleTextStyle: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),

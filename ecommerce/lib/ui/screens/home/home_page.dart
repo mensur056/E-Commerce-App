@@ -2,6 +2,7 @@ import 'package:ecommerce/const/paths/icon_paths.dart';
 import 'package:ecommerce/const/paths/image_paths.dart';
 import 'package:ecommerce/ui/screens/home/widget/popular_card_section.dart';
 import 'package:ecommerce/ui/screens/home/widget/special_card_section.dart';
+import 'package:ecommerce/ui/widgets/custom_bottom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -42,6 +43,7 @@ class _HomePageState extends State<HomePage> with ProjectHomeStrings, ImagePaths
           ],
         ),
       ),
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 

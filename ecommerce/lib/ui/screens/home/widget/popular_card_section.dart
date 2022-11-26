@@ -37,20 +37,24 @@ class PopularCard extends StatelessWidget {
   const PopularCard({
     Key? key,
     required this.imageName,
+    this.onPress,
   }) : super(key: key);
 
   final String imageName;
-
+  final Function()? onPress;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: ProjectBorder.borderRadius16,
-        color: Colors.grey.shade300,
+    return InkWell(
+      onTap: onPress,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: ProjectBorder.borderRadius16,
+          color: Colors.grey.shade300,
+        ),
+        height: MediaQuery.of(context).size.height * 0.180,
+        width: MediaQuery.of(context).size.height * 0.180,
+        child: Image.asset(imageName),
       ),
-      height: MediaQuery.of(context).size.height * 0.180,
-      width: MediaQuery.of(context).size.height * 0.180,
-      child: Image.asset(imageName),
     );
   }
 }
