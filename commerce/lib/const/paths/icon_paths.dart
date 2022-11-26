@@ -26,4 +26,5 @@ class IconPaths {
   static const String icGift = 'assets/icons/ic_e_gift.svg';
   static const String icFlash = 'assets/icons/ic_e_flash.svg';
   static const String icBill = 'assets/icons/ic_e_bill.svg';
+  static const String icGame = 'assets/icons/ic_e_game.svg';
 }
